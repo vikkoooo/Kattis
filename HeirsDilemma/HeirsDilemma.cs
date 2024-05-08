@@ -3,7 +3,7 @@
  *
  * url: https://open.kattis.com/problems/heirsdilemma?tab=metadata
  * author: Viktor Lundberg
- * date: 2024-05-07
+ * date: 2024-05-08
  */
 using System;
 using System.Collections.Generic;
@@ -22,31 +22,64 @@ namespace HeirsDilemma
 
 			for (int i = low; i <= high; i++)
 			{
-				// TODO
 				// check if all digits are different on current i
-				// if it is, check that they are divisible
-				// if they are, count as possible combination
+				if (AllDifferent(i))
+				{
+					// if it is, check that they are divisible
+					if (DivisibleByAll(i))
+					{
+						// if they are, count as possible combination
+						possibleCombination++;
+					}
+				}
 			}
 			Console.WriteLine(possibleCombination);
 		}
 
-
 		public static bool AllDifferent(int n)
 		{
-			// TODO
-			// make number a string
-			// add each char into a "memory" list
-			// check if there are duplicates in the list
-			return false;
+			string numberStringed = n.ToString();
+			List<char> memory = new List<char>();
+
+			foreach (char e in numberStringed)
+			{
+				// check if we have seen the current char already
+				if (memory.Contains(e))
+				{
+					return false; // duplicate found
+				}
+				// add each char into "memory" list we can compare to
+				memory.Add(e);
+			}
+			return true; // test passed so no duplicates was found
 		}
 
 		public static bool DivisibleByAll(int n)
 		{
-			// TODO
-			// make number a string
-			// add each char to a list but add it as separate ints
-			// take each number and make sure it is % 0 to all numbers in the list
-			return false;
+			string numberStrined = n.ToString();
+			List<int> numbers = new List<int>();
+
+			// convert and add each number into a list
+			foreach (char e in numberStrined)
+			{
+				numbers.Add(int.Parse(e.ToString()));
+			}
+
+			// make sure input n is divisible by all numbers in numbers
+			foreach (int e in numbers)
+			{
+				// make sure we dont divide by 0
+				if (e == 0)
+				{
+					return false;
+				}
+
+				if (n % e != 0)
+				{
+					return false;
+				}
+			}
+			return true;
 		}
 	}
 }
