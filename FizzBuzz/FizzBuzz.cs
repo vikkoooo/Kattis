@@ -7,8 +7,6 @@
  */
 using System;
 using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Security.Principal;
 
 namespace FizzBuzz
 {
@@ -17,9 +15,6 @@ namespace FizzBuzz
 		// Driver code
 		public static void Main(string[] args)
 		{
-			Console.WriteLine("Please enter three integers values between 1 and 100 (inclusive), separated by blankspace");
-			Console.WriteLine("Rules: 1 <= x < y <= n <= 100");
-			Console.WriteLine("Example: \"2 3 7\"");
 			string input = Console.ReadLine();
 			int x, y, n;
 
